@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Employee extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        
         'name',
         'position',
         'department',
@@ -17,7 +19,18 @@ class Employee extends Model
         'salary',
     ];
 
-    // Tự động viết hoa chữ cái đầu cho tên, chức vụ và phòng ban
+    protected $keyType = 'string';  
+
+  
+    public $incrementing = false;  
+
+    protected static function booted()
+    {
+        static::creating(function ($employee) {
+            $employee->id = (string) Str::uuid(); 
+        });
+    }
+
     public function getNameAttribute($value)
     {
         return mb_convert_case($value, MB_CASE_TITLE, "UTF-8");
@@ -32,4 +45,8 @@ class Employee extends Model
     {
         return mb_convert_case($value, MB_CASE_TITLE, "UTF-8");
     }
+
+
 }
+
+

@@ -8,3 +8,6 @@ Route::get('/', function () {
 });
 
 Route::resource('employees', EmployeeController::class);
+Route::get('/employees', [EmployeeController::class, 'index'])->name('employees.index');
+
+

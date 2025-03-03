@@ -7,16 +7,30 @@ use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $employees = Employee::all()->map(function ($employee) {
-            $employee->custom_id = $this->generateEmployeeID($employee);
-            return $employee;
-        });
+        $query = Employee::query();
+    
+        // Kiểm tra nếu có tham số tìm kiếm
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+    
+            // Nếu nhập số, ưu tiên tìm theo ID trước
+            if (is_numeric($search)) {
+                $query->where('id', $search);
+            } else {
+                $query->where('name', 'LIKE', "%$search%")
+                      ->orWhere('position', 'LIKE', "%$search%")
+                      ->orWhere('department', 'LIKE', "%$search%");
+            }
+        }
+    
+        // Lấy danh sách nhân viên (có phân trang)
+        $employees = $query->paginate(10);
     
         return view('employees.index', compact('employees'));
     }
-
+    
     public function create()
     {
         $departments = ['Nhân sự', 'Kế toán', 'Marketing', 'Kỹ thuật', 'Bán hàng'];

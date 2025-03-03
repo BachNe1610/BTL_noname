@@ -10,12 +10,14 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up()
-{
-    Schema::table('employees', function (Blueprint $table) {
-        $table->dropColumn('department');
-    });
-}
-
+    {
+        Schema::table('employees', function (Blueprint $table) {
+            if (Schema::hasColumn('employees', 'department')) {
+                $table->dropColumn('department');
+            }
+        });
+    }
+    
 public function down()
 {
     Schema::table('employees', function (Blueprint $table) {
