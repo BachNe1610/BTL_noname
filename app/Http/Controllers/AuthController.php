@@ -23,7 +23,7 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->route('employees.index')->with('success', 'Đăng nhập thành công!!!');
+            return redirect()->route('dashboard')->with('success', 'Đăng nhập thành công!'); // 🔥 Sửa lỗi chuyển hướng
         }
 
         return back()->withErrors(['email' => 'Email hoặc mật khẩu không đúng.']);
@@ -53,6 +53,6 @@ class AuthController extends Controller
 
         Auth::login($user);  // Đăng nhập ngay sau khi đăng ký
 
-        return redirect()->route('employees.index')->with('success', 'Đăng ký thành công và bạn đã đăng nhập!');
+        return redirect()->route('dashboard')->with('success', 'Đăng ký thành công!'); // 🔥 Sửa lỗi chuyển hướng
     }
 }

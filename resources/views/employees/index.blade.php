@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
     <div class="text-center">
         @if(session('error'))
@@ -72,6 +73,9 @@
         @endforeach
         </tbody>
     </table>
+    <div class="d-flex justify-content-center mt-3 ">
+        {{ $employees->links() }}
+    </div>
 
     <!-- Modal Thêm Nhân Viên -->
     <div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-hidden="true">

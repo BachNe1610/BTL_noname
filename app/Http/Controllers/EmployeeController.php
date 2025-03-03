@@ -26,7 +26,7 @@ class EmployeeController extends Controller
         }
     
         // Lấy danh sách nhân viên (có phân trang)
-        $employees = $query->paginate(10);
+        $employees = Employee::simplePaginate(10);
     
         return view('employees.index', compact('employees'));
     }
