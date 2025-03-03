@@ -53,13 +53,28 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0A0A47;">
         <div class="container">
             <a class="navbar-brand" href="{{ route('employees.index') }}">
                 <i class="fas fa-users"></i> Quản Lý Nhân Sự
             </a>
+
+            <div class="ml-auto">
+                @auth
+                    <span class="navbar-text text-white">Xin chào, {{ Auth::user()->name }}!</span> 
+                    <a class="btn btn-danger ml-3" href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Đăng Xuất
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                @endauth
+            </div>
         </div>
     </nav>
+
 
     <!-- Nội dung chính -->
     <div class="container container-custom">
@@ -75,3 +90,13 @@
 
 </body>
 </html>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+            let alertMessages = document.querySelectorAll('.alert');
+            alertMessages.forEach(function(alert) {
+                alert.style.display = 'none';
+            });
+        }, 2000); 
+    });
+</script>
