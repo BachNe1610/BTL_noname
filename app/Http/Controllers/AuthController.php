@@ -50,9 +50,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password), // Mã hóa mật khẩu
         ]);
-
-        Auth::login($user);  // Đăng nhập ngay sau khi đăng ký
-
-        return redirect()->route('dashboard')->with('success', 'Đăng ký thành công!'); // 🔥 Sửa lỗi chuyển hướng
+        
+        return redirect()->route('login')->with('success', 'Đăng ký thành công!'); // 🔥 Sửa lỗi chuyển hướng
     }
 }

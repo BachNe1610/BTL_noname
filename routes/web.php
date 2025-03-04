@@ -36,3 +36,4 @@ Route::post('/logout', function () {
 })->name('logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::resource('leaves', LeaveController::class);
