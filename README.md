@@ -1,68 +1,101 @@
+# README - Hệ thống Quản lý Nhân sự
 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Giới thiệu
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Dự án này là một hệ thống quản lý nhân sự đơn giản được phát triển bằng Laravel. Hệ thống cung cấp các chức năng cơ bản như quản lý tài khoản người dùng, quản lý nhân viên và thống kê nhân sự theo phòng ban. Dự án được xây dựng nhằm phục vụ mục đích học tập và thực hành phát triển ứng dụng web.
 
-## About Laravel
+## Chức năng chính
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Quản lý tài khoản người dùng**
+  - Đăng ký tài khoản mới.
+  - Đăng nhập, đăng xuất hệ thống.
+- **Quản lý nhân viên**
+  - Thêm, sửa, xóa thông tin nhân viên.
+  - Tìm kiếm nhân viên theo tiêu chí cụ thể.
+- **Báo cáo và phân tích**
+  - Thống kê số lượng nhân viên theo từng phòng ban.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Công nghệ sử dụng
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Framework:** Laravel (PHP)
+- **Ngôn ngữ lập trình:** PHP, HTML, CSS, JavaScript
+- **Cơ sở dữ liệu:** MySQL
 
-## Learning Laravel
+## Cài đặt
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Yêu cầu hệ thống
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- PHP >= 8.0
+- Composer
+- MySQL
+- Laravel
+- Node.js (nếu sử dụng Laravel Mix để biên dịch assets)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Hướng dẫn cài đặt
 
-## Laravel Sponsors
+1. **Clone repository**
+   ```sh
+   git clone https://github.com/your-repo/human-resource-management.git
+   cd human-resource-management
+   ```
+2. **Cài đặt các dependencies**
+   ```sh
+   composer install
+   npm install
+   ```
+3. **Cấu hình môi trường**
+   - Sao chép tệp `.env.example` thành `.env` và chỉnh sửa các thông tin cơ sở dữ liệu.
+   ```sh
+   cp .env.example .env
+   ```
+   - Cập nhật thông tin kết nối MySQL trong tệp `.env`
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=your_database
+   DB_USERNAME=your_username
+   DB_PASSWORD=your_password
+   ```
+4. **Tạo khóa ứng dụng**
+   ```sh
+   php artisan key:generate
+   ```
+5. **Chạy migration để tạo bảng trong cơ sở dữ liệu**
+   ```sh
+   php artisan migrate
+   ```
+6. **Khởi chạy ứng dụng**
+   ```sh
+   php artisan serve
+   ```
+   Ứng dụng sẽ chạy tại `http://127.0.0.1:8000`
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Cấu trúc thư mục
 
-### Premium Partners
+```
+HUMAN-RESOURCE-MANAGEMENT/
+|_____app  => Chứa mã nguồn chính
+|   |______Http  => Chứa các thành phần liên quan đến HTTP
+|   |   |______Controllers  => Chứa các lớp để xử lý yêu cầu HTTP
+|   |______Models => Chứa các model Eloquent
+|   |______Providers => Chứa các service đăng ký trong hệ thống
+|_____bootstrap => Chứa tệp khởi động framework
+|_____config => Chứa các tệp cấu hình hệ thống
+|_____database => Chứa migration, factory và seed
+|_____public => Chứa tài nguyên công khai như ảnh, CSS, JS
+|_____resources => Chứa tệp nguồn như view (Blade template)
+|_____routes => Định nghĩa các route của ứng dụng
+|   |____web.php => Route điều hướng chính
+|_____storage => Chứa tệp biên dịch, log và tệp tải lên
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Ghi chú
 
-## Contributing
+- Hệ thống này được phát triển với mục đích học tập và không hướng tới triển khai thực tế.
+- Người dùng có thể mở rộng hệ thống bằng cách thêm các chức năng tùy chỉnh theo nhu cầu.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Liên hệ
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ qua email: `your-email@example.com`
 

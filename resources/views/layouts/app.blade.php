@@ -134,7 +134,7 @@
                         <i class="fas fa-users"></i> Quản lý nhân viên
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('leaves.index') }}">
                         <i class="fas fa-calendar-alt"></i> Quản lý nghỉ phép
                     </a>
@@ -143,7 +143,7 @@
                     <a class="nav-link text-white" href="{{ route('attendance.index') }}">
                         <i class="fas fa-clock"></i> Quản lý chấm công
                     </a>
-                </li>
+                </li> -->
             </ul>
         </div>
         @endauth
